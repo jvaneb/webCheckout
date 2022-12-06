@@ -1,0 +1,353 @@
+<div class="container-fluid" id="contenedor-principal">
+    <div class="card">
+        <div class="row">
+            <!-- DIV RESUMEN COMPRA -->
+            <div class="col-md-6 cart text-center">
+                <div class="title">
+                    <div class="row">
+                        <img src="../../../../../assets/img/Logotipo_PAGODIGITAL.png" class="rounded-sm img-fluid" id="logo" alt="">
+
+                        <p class="col text-right" id="nom_comercio">Nombre del comercio</p>
+
+                    </div>
+                </div>
+                <div class="col text-left text-muted">Resumen compra</div><br>
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col">
+                            <div class="row text-muted">Producto</div>
+                            <div class="row">Referencia</div>
+                        </div>
+                        <div class="col text-right">&#36; 44.000 </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row main align-items-center">
+                        <div class="col">
+                            <div class="row text-muted">Producto</div>
+                            <div class="row">Referencia</div>
+                        </div>
+                        <div class="col text-right">&#36; 44.000 </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="row main align-items-center">
+                        <div class="col">
+                            <h6 class="text-muted text-right">Total: $88.000</h6>
+                            <h6 class="text-muted text-right">IVA: $0</h6>
+                            <h4 class="text-right">Total compra: &#36; 88.000</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="back-to-shop"><a href="#" class="text-secondary">&leftarrow;</a><span class="text-muted">Volver al comercio</span></div>
+            </div>
+
+            <!-- DIV FORM PAGO -->
+            <div class="col-md-6 summary">
+                <div class="text-center"><h5>Información de pago</h5></div>
+                <hr>
+
+                <!-- SKELETON -->
+                <div *ngIf="!contentLoaded">
+                    <div class="form-row" *ngFor="let item of [1,1,1]">
+                        <div class="form-group col-md-6">
+                            <div class="item">
+                                <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="item">
+                                <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="form-row" *ngFor="let item of [1]">
+                        <div class="form-group col-md-12">
+                            <div class="item">
+                                <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="text-center" >Método de pago</h5>
+                    <div class="form-row" *ngFor="let item of [1]">
+                        <div class="col-md-10 offset-1">
+                            <ul class="nav nav-tabs justify-content-center">
+                                <li class="nav-item">
+                                    <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                </li>
+                            </ul>
+
+                            <div class="tab-pane fade show active" id="pse" role="tabpanel" aria-labelledby="pse-tab">
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                        <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                                    </div>
+                                </div>
+                                <ngx-skeleton-loader count="1" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN SKELETON -->
+                
+                <form *ngIf="contentLoaded">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="nombre" class="text-left">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Nombre">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="telefono" class="text-left">Teléfono</label>
+                            <input type="text" class="form-control" placeholder="Teléfono">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="tipo_documento" class="text-left">Tipo documento</label>
+                            <select id="selectTipoDocumento" class="form-control">
+                                <option value="0">Seleccione</option>
+                                <option value="1">Cédula Ciudadanía</option>
+                                <option value="2">Cédula Extranjería</option>
+                                <option value="3">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="numero_documento" class="text-left">Documento</label>
+                            <input type="text" class="form-control" placeholder="Documento">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="email" class="text-left">Email</label>
+                            <input type="text" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="referencia" class="text-left">Referencia de pago</label>
+                            <input type="text" class="form-control" placeholder="Referencia de pago">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="sucursal" class="text-left">Sucursal</label>
+                            <select id="sucursal" class="form-control">
+                                <option value="0">-- Seleccione --</option>
+                                <option value="1">Colina Campestre</option>
+                                <option value="2">Las Américas</option>
+                                <option value="3">Usaquen</option>
+                                <option value="4">Chapinero</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h5 class="text-center">Método de pago</h5>
+                    <br>
+                    <div class="form-row">
+
+                        <div class="col-md-10 offset-1">
+                            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pse-tab" data-toggle="tab" href="#pse" role="tab" aria-controls="pse" aria-selected="true">PSE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="credit-card-tab" data-toggle="tab" href="#credit-card" role="tab" aria-controls="credit-card" aria-selected="false">Tarjeta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="efecty-tab" data-toggle="tab" href="#efecty" role="tab" aria-controls="efecty" aria-selected="false">Efecty</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="sured-tab" data-toggle="tab" href="#sured" role="tab" aria-controls="sured" aria-selected="false">Su Red</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="daviplata-tab" data-toggle="tab" href="#daviplata" role="tab" aria-controls="daviplata" aria-selected="false">Daviplata</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <!-- DIV PSE -->
+                                <div class="tab-pane fade show active" id="pse" role="tabpanel" aria-labelledby="pse-tab">
+                                    <br>
+                                    <img src="../../../../../assets/img/logo_PSE.png" class="rounded mx-auto d-block" alt="logo_pse">
+                                    <br>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="banco">Banco</label>
+                                            <select id="banco" class="form-control">
+                                                <option value="0">-- Seleccione --</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="tipo_persona">Tipo Persona</label>
+                                            <select id="tipo_persona" class="form-control">
+                                                <option value="0">-- Seleccione --</option>
+                                                <option value="1">Persona Natural</option>
+                                                <option value="2">Persona Jurídica</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            </div>
+                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn rounded" (click)="respuesta()">Pagar</button>
+                                </div>
+
+                                <!-- DIV TARJETA CRÉDITO -->
+                                <div class="tab-pane fade" id="credit-card" role="tabpanel" aria-labelledby="credit-card-tab">
+                                    <h5 class="text-white text-center">Información de la tarjeta</h5><br>
+                                    <!-- <div class="cc-types">
+                                        <i class="fa fa-cc-visa fa-2x" aria-hidden="true"></i>&nbsp;
+                                        <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i>&nbsp;
+                                        <i class="fa fa-cc-amex fa-2x" aria-hidden="true"></i>&nbsp;
+                                        <i class="fa fa-cc-discover fa-2x" aria-hidden="true"></i>&nbsp;
+                                    </div> -->
+                                    <label class="text-sm-left">Nombre titular</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="1234 1234 1234 1234" (keyup)="GetCardType2($event) ">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <img [src]="icono ? icono : '../../../../../assets/img/tarjeta.png'" style="width:25px ;" alt="visa">
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="text-sm-left">Fecha vencimiento</label>
+                                            <input type="text" class="form-control" maxlength='5' placeholder="MM/YY" (keyup)="formatString($event);">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="text-sm-left">CVV2</label>
+                                            <input type="text" class="form-control" maxlength='4' placeholder="CVV" (keypress)="soloNumeros($event);">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label class="text-sm-left">Cuotas</label>
+                                            <select id="cuotas" class="form-control">
+                                                <option value="0">-- Seleccione --</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            </div>
+                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn rounded" (click)="respuesta()">Pagar</button>
+                                </div>
+
+                                <!-- DIV EFECTY -->
+                                <div class="tab-pane fade" id="efecty" role="tabpanel" aria-labelledby="efecty-tab">
+                                    <br>
+                                    <div class="alert alert-secondary" role="alert" style="font-size:8pt">
+                                        Para procesar el pago con EFECTIVO por favor siga las instrucciones: <br><br>
+                                        1.  Acércate a la sucursal más cercana de EFECTY. <br>
+                                        2.  Muéstrale o entrégale la referencia de pago PINy número de convenio al asesor de tu sucursal. <br>
+                                        3.  Valida que los datos de tu compra coincidan con los que te da el asesor. <br>
+                                        4.  Realiza el pago. <br>
+                                        5.  Solicita el comprobante y valida nuevamente la Información.
+                                      </div>
+                                    <br>
+                                    <img src="../../../../../assets/img/logo_efecty.png" class="rounded mx-auto d-block" style="width: 120px; background-color: yellow;" alt="logo_efecty">
+                                    <br>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            </div>
+                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                </div>
+
+                                <!-- DIV SU RED -->
+                                <div class="tab-pane fade" id="sured" role="tabpanel" aria-labelledby="sured-tab">
+                                    <br>
+                                    <div class="alert alert-secondary" role="alert" style="font-size:8pt">
+                                        Para procesar el pago con EFECTIVO por favor siga las instrucciones: <br><br>
+                                        1.  Acércate a la sucursal más cercana de SU RED. <br>
+                                        2.  Muéstrale o entrégale la referencia de pago PIN al asesor de tu sucursal. <br>
+                                        3.  Valida que los datos de tu compra coincidan con los que te da el asesor. <br>
+                                        4.  Realiza el pago. <br>
+                                        5.  Solicita el comprobante y valida nuevamente la Información.
+                                      </div>
+                                    <br>
+                                    <img src="../../../../../assets/img/logo_su_red.png" class="rounded mx-auto d-block" style="width: 130px; background-color: rgb(26, 39, 226);" alt="logo_sured">
+                                    <br>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            </div>
+                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                </div>
+
+                                <!-- DIV DAVIPLATA -->
+                                <div class="tab-pane fade" id="daviplata" role="tabpanel" aria-labelledby="daviplata-tab">
+                                    <br>
+                                    <div class="alert alert-secondary" role="alert">
+                                        Mensaje informativo
+                                      </div>
+                                    <br>
+                                    <img src="../../../../../assets/img/logo_daviplata.png" class="rounded mx-auto d-block" style="width: 130px; " alt="logo_daviplata">
+                                    <br>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"  style="font-size: 10pt ;">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            </div>
+                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
