@@ -20,6 +20,8 @@ export class Formulario1Component implements OnInit {
     setTimeout(() => {
       this.contentLoaded = true;
     }, 2000);
+
+    this.icono = '../../../../../assets/img/tarjeta.png';
     // this.spinner.show();
 
     // setTimeout(() => {
@@ -28,7 +30,11 @@ export class Formulario1Component implements OnInit {
     // }, 5000);
   }
 
-  ponerEspacios(e: any) {   
+  keyUpEvent(numeros: any){
+    
+    // Agregar un espacio cada 4 numeros
+    numeros.target.value = numeros.target.value.replace(/([0-9]{4})$/g, '$1 ');
+    // console.log('despues... ',numeros.target.value.replace(/ /g,''));
     
   }
 
@@ -80,15 +86,21 @@ export class Formulario1Component implements OnInit {
   GetCardType(number: any)
   {
     let num = number.target.value;
-    
+
+    if (num.lenght == 0 || num == '') {
+      this.icono = '../../../../../assets/img/tarjeta.png';
+      return;
+    }
+
     // visa
     let re = new RegExp("^4");
-    if (num.match(re) != null)
+    if (num.match(re) != null )
     this.icono = '../../../../../assets/img/visa.png';
 
     // Mastercard
-    // Updated for Mastercard 2017 BINs expansion
-    if (/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/.test(num))
+    let mastercard = new RegExp("^5");
+    let mastercard2 = new RegExp("^2");
+    if (num.match(mastercard) != null || num.match(mastercard2) != null )
     this.icono = '../../../../../assets/img/mastercard.png';
 
     // American express
@@ -112,43 +124,6 @@ export class Formulario1Component implements OnInit {
     this.icono = '../../../../../assets/img/diners.png';
 
 
-  }
-
-  GetCardType2(cc: any) {
-    let num = cc.target.value;
-
-    let amex = new RegExp('^3[47][0-9]{13}$');
-    let visa = new RegExp('^4[0-9]{12}(?:[0-9]{3})?$');
-    let mastercard = new RegExp('^5[1-5][0-9]{14}$');
-    let mastercard2 = new RegExp('^2[2-7][0-9]{14}$');
-    let diners = new RegExp('^3[0689][0-9]{12}[0-9]*$');
-
-
-    if (visa.test(num) != null) {
-      this.icono = '../../../../../assets/img/visa.png';
-      console.log('visa');
-      
-    }
-    else if (amex.test(cc.target.value)) {
-      this.icono = '../../../../../assets/img/american.png';
-      console.log('amex');
-      
-    }
-    else if (mastercard.test(cc.target.value) || mastercard2.test(cc.target.value)) {
-      this.icono = '../../../../../assets/img/mastercard.png';
-      console.log('mastercard');
-      
-    }
-    else if (diners.test(cc.target.value)) {
-      this.icono = '../../../../../assets/img/diners.png';
-      console.log('diners');
-      
-    }
-    else {
-      this.icono = '../../../../../assets/img/tarjeta.png'
-      console.log('ninguna');
-      
-    }
   }
 
   respuesta() {

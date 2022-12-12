@@ -220,10 +220,11 @@
                                     </div> -->
                                     <label class="text-sm-left">Nombre titular</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="1234 1234 1234 1234" (keyup)="GetCardType2($event) ">
+                                        <!-- (keydown)="keyDownEvent($event)"   -->
+                                        <input type="text" class="form-control" maxlength="30" placeholder="1234 1234 1234 1234" (keypress)="soloNumeros($event)" (keyup)="keyUpEvent($event); GetCardType($event);" >
                                         <div class="input-group-append">
                                             <span class="input-group-text">
-                                                <img [src]="icono ? icono : '../../../../../assets/img/tarjeta.png'" style="width:25px ;" alt="visa">
+                                                <img [src]="icono" style="width:25px;">
                                             </span>
                                         </div>
                                     </div>
