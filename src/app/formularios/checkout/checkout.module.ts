@@ -8,6 +8,13 @@ import { FormRespuestaComponent } from './pages/form-respuesta/form-respuesta.co
 // Import library module
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -18,9 +25,24 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   imports: [
     CommonModule,
     CheckoutRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxSpinnerModule,
     NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...' }),
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CheckoutModule { }
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

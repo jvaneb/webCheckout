@@ -1,0 +1,40 @@
+{
+    "demo": {
+        "title": "Traducir",
+        "text": "Esta es una demostración simple de traducción con ngx-translate"
+    },
+    "textos": {
+        "info_pago": "Información de pago",
+        "nombre": "Nombre",
+        "telefono": "Teléfono",
+        "tipo_doc": "Tipo documento",
+        "num_doc": "Número documento",
+        "email": "Correo",
+        "ref_pago": "Referencia de pago",
+        "resu_compra": "Resumen de compra",
+        "volver": "Volver al comercio",
+        "banco": "Banco",
+        "tipo_per": "Tipo persona",
+        "pse": "PSE",
+        "tarjeta": "Tarjeta crédito",
+        "acepta": "Acepta",
+        "y": "y",
+        "terminos": "términos y condiciones",
+        "politica_datos": "política de datos",
+        "num_tarjeta": "Número tarjeta",
+        "fecha_vence": "Fecha vencimiento",
+        "cuotas": "Cuotas",
+        "pagar": "Pagar",
+        "total_c": "Total compra",
+        "total": "Total",
+        "iva": "IVA",
+        "metodo_pago": "Método de pago",
+        "info_tarjeta": "Información de la tarjeta",
+        "pin": "Generar PIN"
+    },
+    "monedas": {
+        "dolarUS": "USD",
+        "pesosCOL": "COP",
+        "euroPOR": "EUR"
+    }
+}

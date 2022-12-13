@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { NgxSpinnerService } from "ngx-spinner";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-formulario1',
@@ -12,11 +14,23 @@ export class Formulario1Component implements OnInit {
 
   contentLoaded = false;
   icono: any;
+  form: FormGroup = new FormGroup({});
 
-  constructor(private spinner: NgxSpinnerService,
-              private router: Router) { }
+  constructor(private formbuild: FormBuilder,
+              private spinner: NgxSpinnerService,
+              private router: Router,
+              public translate: TranslateService) 
+              {
+                translate.setDefaultLang('es');
+                translate.use('es');
+                translate.addLangs(['es','en','pt']);
+
+                // const browserLang: any = translate.getBrowserLang();
+                // translate.use(browserLang.match(/en|es/|pt/) ? browserLang : 'es');
+              }
 
   ngOnInit(): void {
+    this.crearFormulario();
     setTimeout(() => {
       this.contentLoaded = true;
     }, 2000);
@@ -28,6 +42,20 @@ export class Formulario1Component implements OnInit {
     //   /** spinner ends after 5 seconds */
     //   this.spinner.hide();
     // }, 5000);
+  }
+
+  crearFormulario() {
+    this.form = this.formbuild.group({      
+      nombre: new FormControl('',[Validators.required]),
+      telefono: new FormControl('',[Validators.required]),
+      id_tipo_documento: new FormControl('',[Validators.required]),
+      numero_documento: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required, Validators.email]),
+      ref_pago: new FormControl('',[Validators.required]),
+      id_sucursal: new FormControl('',[Validators.required]),
+      id_banco_pse: new FormControl('',[Validators.required]),
+      id_tipo_persona_pse: new FormControl('',[Validators.required]),
+    });
   }
 
   keyUpEvent(numeros: any){
@@ -127,12 +155,9 @@ export class Formulario1Component implements OnInit {
   }
 
   respuesta() {
-    let data = {
-      nombre: 'Jeimmy',
-      email: 'jeimmy.bautista@pagodigital.co',
-      celular: '3225999626'
-    }
-    this.router.navigate(['/formulario/checkout/formRespuesta/:'+ data]);
+    console.log(this.form.value);
+    
+    // this.router.navigate(['/formulario/checkout/formRespuesta/:'+ data]);
   }
 
 }

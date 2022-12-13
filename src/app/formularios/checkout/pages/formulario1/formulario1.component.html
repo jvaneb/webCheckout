@@ -11,7 +11,7 @@
 
                     </div>
                 </div>
-                <div class="col text-left text-muted">Resumen compra</div><br>
+                <div class="col text-left text-muted">{{"textos.resu_compra" | translate}}</div><br>
                 <div class="row border-top border-bottom">
                     <div class="row main align-items-center">
                         <div class="col">
@@ -34,18 +34,27 @@
                 <div class="row">
                     <div class="row main align-items-center">
                         <div class="col">
-                            <h6 class="text-muted text-right">Total: $88.000</h6>
-                            <h6 class="text-muted text-right">IVA: $0</h6>
-                            <h4 class="text-right">Total compra: &#36; 88.000</h4>
+                            <h6 class="text-muted text-right">{{"textos.total" | translate}}: $88.000</h6>
+                            <h6 class="text-muted text-right">{{"textos.iva" | translate}}: $0</h6>
+                            <h4 class="text-right">{{"textos.total_c" | translate}}: &#36; 88.000</h4>
                         </div>
                     </div>
                 </div>
-                <div class="back-to-shop"><a href="#" class="text-secondary">&leftarrow;</a><span class="text-muted">Volver al comercio</span></div>
+                <div class="back-to-shop"><a href="#" class="text-secondary">&leftarrow;</a><span class="text-muted">{{"textos.volver" | translate}}</span></div><br>
+
+                <div class="row">
+                    <h6>{{ 'demo.title' | translate }}</h6>
+                    <div class="col-2">
+                        <select #langSelect (change)="translate.use(langSelect.value)" class="form-control">
+                            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <!-- DIV FORM PAGO -->
             <div class="col-md-6 summary">
-                <div class="text-center"><h5>Información de pago</h5></div>
+                <div class="text-center"><h5>{{"textos.info_pago" | translate}}</h5></div>
                 <hr>
 
                 <!-- SKELETON -->
@@ -100,59 +109,49 @@
                 </div>
                 <!-- FIN SKELETON -->
                 
-                <form *ngIf="contentLoaded">
+                <form [formGroup]="form" *ngIf="contentLoaded">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nombre" class="text-left">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre">
+                            <label for="nombre" class="text-left">{{"textos.nombre" | translate}}</label>
+                            <input type="text" class="form-control" formControlName="nombre" placeholder="{{'textos.nombre' | translate}}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="telefono" class="text-left">Teléfono</label>
-                            <input type="text" class="form-control" placeholder="Teléfono">
+                            <label for="telefono" class="text-left">{{"textos.telefono" | translate}}</label>
+                            <input type="text" class="form-control" formControlName="telefono" placeholder="{{'textos.telefono' | translate}}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="tipo_documento" class="text-left">Tipo documento</label>
-                            <select id="selectTipoDocumento" class="form-control">
-                                <option value="0">Seleccione</option>
+                            <label for="tipo_documento" class="text-left">{{"textos.tipo_doc" | translate}}</label>
+                            <select id="selectTipoDocumento" formControlName="id_tipo_documento" class="form-control">
+                                <option value="0">-- Seleccione --</option>
                                 <option value="1">Cédula Ciudadanía</option>
                                 <option value="2">Cédula Extranjería</option>
                                 <option value="3">Pasaporte</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="numero_documento" class="text-left">Documento</label>
-                            <input type="text" class="form-control" placeholder="Documento">
+                            <label for="numero_documento" class="text-left">{{"textos.num_doc" | translate}}</label>
+                            <input type="text" class="form-control" formControlName="numero_documento" placeholder="{{'demo.title' | translate }}">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="email" class="text-left">Email</label>
-                            <input type="text" class="form-control" placeholder="Email">
+                            <label for="email" class="text-left">{{"textos.email" | translate}}</label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="{{'textos.email' | translate}}">
+                            <span *ngIf="this.form.get('email')?.errors?.['email']">
+                                (El mail no es válido)
+                              </span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="referencia" class="text-left">Referencia de pago</label>
-                            <input type="text" class="form-control" placeholder="Referencia de pago">
+                            <label for="referencia" class="text-left">{{"textos.ref_pago" | translate}}</label>
+                            <input type="text" class="form-control" formControlName="ref_pago" placeholder="{{'textos.ref_pago' | translate}}">
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="sucursal" class="text-left">Sucursal</label>
-                            <select id="sucursal" class="form-control">
-                                <option value="0">-- Seleccione --</option>
-                                <option value="1">Colina Campestre</option>
-                                <option value="2">Las Américas</option>
-                                <option value="3">Usaquen</option>
-                                <option value="4">Chapinero</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <h5 class="text-center">Método de pago</h5>
+                    <h5 class="text-center">{{"textos.metodo_pago" | translate}}</h5>
                     <br>
                     <div class="form-row">
 
@@ -160,10 +159,10 @@
                             <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="pse-tab" data-toggle="tab" href="#pse" role="tab" aria-controls="pse" aria-selected="true">PSE</a>
+                                    <a class="nav-link active" id="pse-tab" data-toggle="tab" href="#pse" role="tab" aria-controls="pse" aria-selected="true">{{"textos.pse" | translate}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="credit-card-tab" data-toggle="tab" href="#credit-card" role="tab" aria-controls="credit-card" aria-selected="false">Tarjeta</a>
+                                    <a class="nav-link" id="credit-card-tab" data-toggle="tab" href="#credit-card" role="tab" aria-controls="credit-card" aria-selected="false">{{"textos.tarjeta" | translate}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="efecty-tab" data-toggle="tab" href="#efecty" role="tab" aria-controls="efecty" aria-selected="false">Efecty</a>
@@ -184,14 +183,14 @@
                                     <br>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="banco">Banco</label>
-                                            <select id="banco" class="form-control">
+                                            <label for="banco">{{"textos.banco" | translate}}</label>
+                                            <select id="banco" formControlName="id_banco_pse" class="form-control">
                                                 <option value="0">-- Seleccione --</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="tipo_persona">Tipo Persona</label>
-                                            <select id="tipo_persona" class="form-control">
+                                            <label for="tipo_persona">{{"textos.tipo_per" | translate}}</label>
+                                            <select id="tipo_persona" formControlName="id_tipo_persona_pse" class="form-control">
                                                 <option value="0">-- Seleccione --</option>
                                                 <option value="1">Persona Natural</option>
                                                 <option value="2">Persona Jurídica</option>
@@ -203,24 +202,17 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                             </div>
-                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                            {{"textos.acepta" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.terminos" | translate}} </a></span> {{"textos.y" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.politica_datos" | translate}}</a></span>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn rounded" (click)="respuesta()">Pagar</button>
+                                    <button type="button" class="btn rounded" (click)="respuesta()">{{"textos.pagar" | translate}}</button>
                                 </div>
 
                                 <!-- DIV TARJETA CRÉDITO -->
                                 <div class="tab-pane fade" id="credit-card" role="tabpanel" aria-labelledby="credit-card-tab">
-                                    <h5 class="text-white text-center">Información de la tarjeta</h5><br>
-                                    <!-- <div class="cc-types">
-                                        <i class="fa fa-cc-visa fa-2x" aria-hidden="true"></i>&nbsp;
-                                        <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i>&nbsp;
-                                        <i class="fa fa-cc-amex fa-2x" aria-hidden="true"></i>&nbsp;
-                                        <i class="fa fa-cc-discover fa-2x" aria-hidden="true"></i>&nbsp;
-                                    </div> -->
-                                    <label class="text-sm-left">Nombre titular</label>
+                                    <h5 class="text-white text-center">{{"textos.info_tarjeta" | translate}}</h5><br>
+                                    <label class="text-sm-left">{{"textos.num_tarjeta" | translate}}</label>
                                     <div class="input-group">
-                                        <!-- (keydown)="keyDownEvent($event)"   -->
                                         <input type="text" class="form-control" maxlength="30" placeholder="1234 1234 1234 1234" (keypress)="soloNumeros($event)" (keyup)="keyUpEvent($event); GetCardType($event);" >
                                         <div class="input-group-append">
                                             <span class="input-group-text">
@@ -231,7 +223,7 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="text-sm-left">Fecha vencimiento</label>
+                                            <label class="text-sm-left">{{"textos.fecha_vence" | translate}}</label>
                                             <input type="text" class="form-control" maxlength='5' placeholder="MM/YY" (keyup)="formatString($event);">
                                         </div>
                                         <div class="form-group col-md-6">
@@ -242,7 +234,7 @@
 
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label class="text-sm-left">Cuotas</label>
+                                            <label class="text-sm-left">{{"textos.cuotas" | translate}}</label>
                                             <select id="cuotas" class="form-control">
                                                 <option value="0">-- Seleccione --</option>
                                                 <option value="1">1</option>
@@ -260,11 +252,11 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                             </div>
-                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                            {{"textos.acepta" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.terminos" | translate}} </a></span> {{"textos.y" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.politica_datos" | translate}}</a></span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn rounded" (click)="respuesta()">Pagar</button>
+                                    <button type="button" class="btn rounded" (click)="respuesta()">{{"textos.pagar" | translate}}</button>
                                 </div>
 
                                 <!-- DIV EFECTY -->
@@ -287,11 +279,11 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                             </div>
-                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                            {{"textos.acepta" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.terminos" | translate}} </a></span> {{"textos.y" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.politica_datos" | translate}}</a></span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                    <button type="button" class="btn rounded">{{"textos.pin" | translate}}</button>
                                 </div>
 
                                 <!-- DIV SU RED -->
@@ -314,11 +306,11 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                             </div>
-                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                            {{"textos.acepta" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.terminos" | translate}} </a></span> {{"textos.y" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.politica_datos" | translate}}</a></span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                    <button type="button" class="btn rounded">{{"textos.pin" | translate}}</button>
                                 </div>
 
                                 <!-- DIV DAVIPLATA -->
@@ -336,11 +328,11 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                             </div>
-                                            Acepta <span class="font-weight-bold"><a href="#"> términos y condiciones </a></span> y <span class="font-weight-bold"><a href="#"> política de datos</a></span>
+                                            {{"textos.acepta" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.terminos" | translate}} </a></span> {{"textos.y" | translate}} <span class="font-weight-bold"><a href="#"> {{"textos.politica_datos" | translate}}</a></span>
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn rounded">Generar PIN</button>
+                                    <button type="button" class="btn rounded">{{"textos.pin" | translate}}</button>
                                 </div>
                             </div>
                         </div>
@@ -348,7 +340,6 @@
                 </form>
             </div>
         </div>
-
-    </div>
+    <div>
 </div>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

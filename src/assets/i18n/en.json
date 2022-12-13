@@ -1,0 +1,40 @@
+{
+    "demo": {
+        "title": "Translate",
+        "text": "This is a simple demonstration app for ngx-translate"
+    },
+    "textos": {
+        "info_pago": "Payment information",
+        "nombre": "Name",
+        "telefono": "Phone",
+        "tipo_doc": "Document type",
+        "num_doc": "Document number",
+        "email": "Mail",
+        "ref_pago": "Payment reference",
+        "resu_compra": "Purchase summary",
+        "volver": "Back to trade",
+        "banco": "Bank",
+        "tipo_per": "Person type",
+        "pse": "Payment online",
+        "tarjeta": "Credit card",
+        "acepta": "Accept",
+        "y": "and",
+        "terminos": "terms and conditions",
+        "politica_datos": "data policy",
+        "num_tarjeta": "Card number",
+        "fecha_vence": "Expiration date",
+        "cuotas": "Dues",
+        "pagar": "Pay",
+        "total_c": "Full purchase",
+        "total": "Total",
+        "iva": "Impost",
+        "metodo_pago": "Payment method",
+        "info_tarjeta": "Card information",
+        "pin": "Generate PIN"
+    },
+    "monedas": {
+        "dolarUS": "USD",
+        "pesosCOL": "COP",
+        "euroPOR": "EUR"
+    }
+}
