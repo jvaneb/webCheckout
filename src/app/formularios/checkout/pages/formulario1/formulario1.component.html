@@ -117,7 +117,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="telefono" class="text-left">{{"textos.telefono" | translate}}</label>
-                            <input type="text" class="form-control" formControlName="telefono" placeholder="{{'textos.telefono' | translate}}">
+                            <input type="text" class="form-control" formControlName="telefono" placeholder="{{'textos.telefono' | translate}}" (keypress)="soloNumeros($event)">
                         </div>
                     </div>
 
@@ -133,7 +133,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="numero_documento" class="text-left">{{"textos.num_doc" | translate}}</label>
-                            <input type="text" class="form-control" formControlName="numero_documento" placeholder="{{'demo.title' | translate }}">
+                            <input type="text" class="form-control" formControlName="numero_documento" placeholder="{{'textos.num_doc' | translate }}">
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@
                             <label for="email" class="text-left">{{"textos.email" | translate}}</label>
                             <input type="text" class="form-control" formControlName="email" placeholder="{{'textos.email' | translate}}">
                             <span *ngIf="this.form.get('email')?.errors?.['email']">
-                                (El mail no es válido)
+                                (Digite un correo válido)
                               </span>
                         </div>
                         <div class="form-group col-md-6">

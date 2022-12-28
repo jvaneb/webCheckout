@@ -13,7 +13,7 @@ const routes: Routes = [
     component: Formulario1Component
   },
   {
-    path: 'formRespuesta/:data',
+    path: 'formRespuesta',
     component: FormRespuestaComponent
   }
 ];

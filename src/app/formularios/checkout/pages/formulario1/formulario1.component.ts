@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -11,6 +11,8 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./formulario1.component.css']
 })
 export class Formulario1Component implements OnInit {
+
+  @Output() resp = new EventEmitter();
 
   contentLoaded = false;
   icono: any;
@@ -155,9 +157,8 @@ export class Formulario1Component implements OnInit {
   }
 
   respuesta() {
-    console.log(this.form.value);
-    
-    // this.router.navigate(['/formulario/checkout/formRespuesta/:'+ data]);
+    this.resp.emit(this.form.value);    
+    this.router.navigate(['/formulario/checkout/formRespuesta', {data: this.form.value}]);
   }
 
 }
